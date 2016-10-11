@@ -15,10 +15,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button selectAll;
     private Button cancelAll;
+    private Button edit;
     private ListView mListView;
     private TextView mTextView;
     private ArrayList<String> sList = new ArrayList<>();
     private mBaseAdapter mAdapter;
+    private  Boolean flag=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         selectAll = (Button) findViewById(R.id.selectAll);
         cancelAll = (Button) findViewById(R.id.cancelAll);
+        edit = (Button) findViewById(R.id.edit);
+        edit.setOnClickListener(this);
         selectAll.setOnClickListener(this);
         cancelAll.setOnClickListener(this);
         mListView = (ListView) findViewById(R.id.mListView);
@@ -75,6 +79,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     dataChange();
                 }
                 break;
+            case R.id.edit:
+                if(flag){
+                    edit.setText("完成");
+                    for (int i = 0; i < 100; i++) {
+                        mBaseAdapter.getIsVisible().put(i,false);
+                    }
+                    flag=false;
+                }else{
+                    edit.setText("编辑");
+                    for (int i = 0; i < 100; i++) {
+                        mBaseAdapter.getIsVisible().put(i,true);
+                    }
+                    flag=true;
+                }
+                dataChange();
+                break;
         }
     }
 
@@ -82,10 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void dataChange(){
         mAdapter.notifyDataSetChanged();
     }
-
-
-
-
 
 
 }
