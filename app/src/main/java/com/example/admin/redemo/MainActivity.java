@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button selectAll;
     private Button cancelAll;
     private Button edit;
-    private ListView mListView;
+    private MeListView mListView;
     private TextView mTextView;
     private ArrayList<String> sList = new ArrayList<>();
     private mBaseAdapter mAdapter;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edit.setOnClickListener(this);
         selectAll.setOnClickListener(this);
         cancelAll.setOnClickListener(this);
-        mListView = (ListView) findViewById(R.id.mListView);
+        mListView = (MeListView) findViewById(R.id.mListView);
         mTextView = (TextView) findViewById(R.id.mTextView);
     }
 
@@ -81,12 +80,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.edit:
                 if(flag){
+                    mListView.allDeleteShow();
                     edit.setText("完成");
                     for (int i = 0; i < 100; i++) {
-                        mBaseAdapter.getIsVisible().put(i,false);
+                        mBaseAdapter.getIsVisible().put(i,true);
                     }
                     flag=false;
                 }else{
+                    mListView.cancaelShow();
                     edit.setText("编辑");
                     for (int i = 0; i < 100; i++) {
                         mBaseAdapter.getIsVisible().put(i,true);

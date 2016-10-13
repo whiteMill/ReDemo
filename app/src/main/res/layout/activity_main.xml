@@ -33,8 +33,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="编辑"/>
-
-
     </LinearLayout>
 
 
@@ -46,11 +44,11 @@
         android:background="#000000"
         ></View>
 
-    <ListView
+    <com.example.admin.redemo.MeListView
         android:id="@+id/mListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/mView"></ListView>
+        android:layout_below="@+id/mView"></com.example.admin.redemo.MeListView>
 
 
 </RelativeLayout>
